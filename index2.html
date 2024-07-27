@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Showcase</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            color: #333;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .video {
+            background: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .video:hover {
+            transform: scale(1.02);
+        }
+
+        iframe {
+            width: 100%;
+            height: 200px;
+            border: 0;
+        }
+
+        .video-title {
+            padding: 10px;
+            font-size: 1.1em;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Video Showcase</h1>
+        <div class="video-grid">
+            <div class="video">
+                <iframe src="https://www.youtube.com/embed/w7dyFLjsjHE" allowfullscreen></iframe>
+                <div class="video-title">Video 1</div>
+            </div>
+            <div class="video">
+                <iframe src="https://www.youtube.com/embed/9ROafEzqymk" allowfullscreen></iframe>
+                <div class="video-title">Video 2</div>
+            </div>
+            <div class="video">
+                <iframe src="https://www.youtube.com/embed/Ke9Ekv1TgrM" allowfullscreen></iframe>
+                <div class="video-title">Video 3</div>
+            </div>
+            <div class="video">
+                <iframe src="https://www.youtube.com/embed/CbdR0pJQUUc" allowfullscreen></iframe>
+                <div class="video-title">Video 4</div>
+            </div>
+            <div class="video">
+                <iframe src="https://www.youtube.com/embed/NFyWVddSdWU" allowfullscreen></iframe>
+                <div class="video-title">Video 5</div>
+            </div>
+            <div class="video">
+                <iframe src="https://www.youtube.com/embed/rQv8VuLpKN4" allowfullscreen></iframe>
+                <div class="video-title">Video 6</div>
+            </div>
+            <div class="video">
+                <iframe src="https://www.youtube.com/embed/MERuQc78JHA" allowfullscreen></iframe>
+                <div class="video-title">Short 1</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
