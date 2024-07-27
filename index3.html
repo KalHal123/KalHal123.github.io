@@ -3,39 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Styled Buttons</title>
+    <title>Form with Buttons</title>
     <style>
-        /* Basic Button Styles */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .input-field {
+            width: 100%;
+            margin-bottom: 15px;
+        }
+
+        input[type="text"] {
+            width: calc(100% - 22px); /* Full width minus padding */
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+
         .button {
-            padding: 100px 200px;
+            padding: 12px 24px;
             border: none;
             border-radius: 5px;
-            background-color: #007bff;
+            background: #007bff;
             color: #fff;
             font-size: 16px;
             cursor: pointer;
             transition: background-color 0.3s ease, transform 0.2s ease;
-            text-align: center;
-            text-decoration: none;
             display: inline-block;
         }
 
         .button:hover {
-            background-color: #0056b3;
+            background: #0056b3;
             transform: scale(1.05);
         }
 
         .button:active {
-            background-color: #003d80;
+            background: #003d80;
             transform: scale(0.95);
         }
     </style>
 </head>
 <body>
-    <!-- Button using <button> element -->
-    <button class="button" type="button">Button Element</button>
-
-    <!-- Button using <input> element -->
-    <input type="button" class="button" value="Input Element">
+    <div class="container">
+        <form id="myForm">
+            <div class="input-field">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" placeholder="Enter your name" required>
+            </div>
+            <button type="button" class="button" onclick="alert('Button Clicked!')">Button Element</button>
+            <input type="button" class="button" value="Input Element" onclick="alert('Input Button Clicked!')">
+        </form>
+    </div>
 </body>
 </html>
