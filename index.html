@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stylish Website</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #f06, #ff6);
+            color: #fff;
+            text-align: center;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 10px;
+            padding: 20px;
+            max-width: 500px;
+            width: 100%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .container:hover {
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            transform: translateY(-5px);
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 2.5em;
+            background: linear-gradient(135deg, #ff6, #f06);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        p {
+            font-size: 1.2em;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        input[type="text"] {
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            width: calc(100% - 22px);
+            font-size: 1em;
+            margin-bottom: 10px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        input[type="text"]:focus {
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+            border: 1px solid #fff;
+        }
+
+        input[type="submit"] {
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            background: #ff6;
+            color: #000; /* Black font color for better readability */
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+
+        input[type="submit"]:hover {
+            background: #f06; /* Lighter background color on hover */
+            color: #fff; /* White font color on hover */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        #displayName {
+            font-size: 2em;
+            color: #ff6;
+            margin-top: 20px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to Stylish Site</h1>
+        <p>Enter your name below:</p>
+        <form onsubmit="handleSubmit(event)">
+            <input type="text" id="name" name="name" placeholder="Your Name" required />
+            <input type="submit" value="Submit" />
+        </form>
+        <p id="displayName"></p>
+    </div>
+
+    <script>
+        function handleSubmit(event) {
+            event.preventDefault(); // Prevent default form submission
+            const name = document.getElementById('name').value;
+            const displayElement = document.getElementById('displayName');
+            displayElement.textContent = name;
+            displayElement.style.display = 'block'; // Show the element
+            setTimeout(() => {
+                displayElement.style.display = 'none'; // Hide the element after 3 seconds
+            }, 3000); // 3000 milliseconds = 3 seconds
+        }
+    </script>
+</body>
+</html>
