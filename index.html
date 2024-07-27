@@ -14,6 +14,7 @@
             padding: 0;
             height: 100vh;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
         }
@@ -89,6 +90,25 @@
             margin-top: 20px;
             display: none;
         }
+
+        .link-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background: #007bff;
+            color: #fff;
+            font-size: 1.2em;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .link-button:hover {
+            background: #0056b3;
+            text-decoration: none;
+        }
     </style>
 </head>
 <body>
@@ -100,6 +120,7 @@
             <input type="submit" value="Submit" />
         </form>
         <p id="displayName"></p>
+        <a href="index2.html" class="link-button">Go to Video Showcase</a>
     </div>
 
     <script>
