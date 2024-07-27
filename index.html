@@ -3,138 +3,112 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stylish Website</title>
+    <title>Main Page</title>
     <style>
         body {
             margin: 0;
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #f06, #ff6);
-            color: #fff;
-            text-align: center;
-            padding: 0;
-            height: 100vh;
+            font-family: Arial, sans-serif;
+            background: #f0f0f0;
+            color: #333;
             display: flex;
             flex-direction: column;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
+            height: 100vh;
+            padding: 0;
         }
 
         .container {
-            background: rgba(0, 0, 0, 0.6);
-            border-radius: 10px;
+            text-align: center;
             padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             max-width: 500px;
             width: 100%;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s ease;
-        }
-
-        .container:hover {
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-            transform: translateY(-5px);
         }
 
         h1 {
-            margin: 0;
-            font-size: 2.5em;
-            background: linear-gradient(135deg, #ff6, #f06);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        p {
-            font-size: 1.2em;
-        }
-
-        form {
-            margin-top: 20px;
-        }
-
-        input[type="text"] {
-            border: none;
-            padding: 10px;
-            border-radius: 5px;
-            width: calc(100% - 22px);
-            font-size: 1em;
-            margin-bottom: 10px;
-            outline: none;
-            transition: all 0.3s ease;
-        }
-
-        input[type="text"]:focus {
-            box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
-            border: 1px solid #fff;
-        }
-
-        input[type="submit"] {
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            background: #ff6;
-            color: #000; /* Black font color for better readability */
-            font-size: 1.1em;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: bold;
-        }
-
-        input[type="submit"]:hover {
-            background: #f06; /* Lighter background color on hover */
-            color: #fff; /* White font color on hover */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-        }
-
-        #displayName {
+            margin-bottom: 20px;
             font-size: 2em;
-            color: #ff6;
-            margin-top: 20px;
-            display: none;
+            color: #007bff;
         }
 
         .link-button {
-            margin-top: 20px;
-            padding: 10px 20px;
+            padding: 15px 25px;
             border: none;
             border-radius: 5px;
             background: #007bff;
             color: #fff;
-            font-size: 1.2em;
+            font-size: 1.5em;
             cursor: pointer;
             text-decoration: none;
-            display: inline-block;
             transition: all 0.3s ease;
+            display: inline-block;
         }
 
         .link-button:hover {
             background: #0056b3;
-            text-decoration: none;
+        }
+
+        .input-container {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1em;
+            width: 100%;
+            max-width: 300px;
+        }
+
+        input[type="submit"] {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background: #28a745;
+            color: #fff;
+            font-size: 1em;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: all 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background: #218838;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Welcome to Stylish Site</h1>
-        <p>Enter your name below:</p>
-        <form onsubmit="handleSubmit(event)">
-            <input type="text" id="name" name="name" placeholder="Your Name" required />
-            <input type="submit" value="Submit" />
-        </form>
-        <p id="displayName"></p>
-        <!-- Button to link to the second page -->
+        <h1>Welcome to My Website</h1>
+        <div class="input-container">
+            <form id="nameForm">
+                <input type="text" id="nameInput" placeholder="Enter your name" required>
+                <input type="submit" value="Submit">
+            </form>
+            <p id="greetingMessage" style="margin-top: 20px; font-size: 1.2em;"></p>
+        </div>
         <a href="index2.html" class="link-button">Go to Video Showcase</a>
     </div>
 
     <script>
-        function handleSubmit(event) {
-            event.preventDefault(); // Prevent default form submission
-            const name = document.getElementById('name').value;
-            const displayElement = document.getElementById('displayName');
-            displayElement.textContent = name;
-            displayElement.style.display = 'block'; // Show the element
+        document.getElementById('nameForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const name = document.getElementById('nameInput').value;
+            const message = `Hello, ${name}! Welcome to the website.`;
+            const greetingMessage = document.getElementById('greetingMessage');
+            greetingMessage.textContent = message;
+            
             setTimeout(() => {
-                displayElement.style.display = 'none'; // Hide the element after 3 seconds
-            }, 3000); // 3000 milliseconds = 3 seconds
-        }
+                greetingMessage.textContent = '';
+            }, 3000); // Clear message after 3 seconds
+        });
     </script>
 </body>
 </html>
