@@ -3,96 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stylish Website</title>
+    <title>Endless Video Showcase</title>
     <style>
         body {
             margin: 0;
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #f06, #ff6);
-            color: #fff;
-            text-align: center;
-            padding: 0;
-            height: 100vh;
+            font-family: Arial, sans-serif;
+            background: #f0f0f0;
+            color: #333;
             display: flex;
             flex-direction: column;
-            justify-content: center;
             align-items: center;
+            padding: 0;
+            overflow-x: hidden;
         }
 
         .container {
-            background: rgba(0, 0, 0, 0.6);
-            border-radius: 10px;
-            padding: 20px;
-            max-width: 500px;
+            max-width: 1200px;
             width: 100%;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s ease;
+            padding: 20px;
         }
 
-        .container:hover {
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-            transform: translateY(-5px);
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            justify-content: center;
         }
 
-        h1 {
-            margin: 0;
-            font-size: 2.5em;
-            background: linear-gradient(135deg, #ff6, #f06);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .video {
+            background: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
         }
 
-        p {
-            font-size: 1.2em;
+        .video:hover {
+            transform: scale(1.02);
         }
 
-        form {
-            margin-top: 20px;
+        iframe {
+            width: 100%;
+            height: 200px;
+            border: 0;
         }
 
-        input[type="text"] {
-            border: none;
+        .video-title {
             padding: 10px;
-            border-radius: 5px;
-            width: calc(100% - 22px);
-            font-size: 1em;
-            margin-bottom: 10px;
-            outline: none;
-            transition: all 0.3s ease;
-        }
-
-        input[type="text"]:focus {
-            box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
-            border: 1px solid #fff;
-        }
-
-        input[type="submit"] {
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            background: #ff6;
-            color: #000; /* Black font color for better readability */
             font-size: 1.1em;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: bold;
+            color: #333;
         }
 
-        input[type="submit"]:hover {
-            background: #f06; /* Lighter background color on hover */
-            color: #fff; /* White font color on hover */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        .loading {
+            margin: 20px;
+            font-size: 1.5em;
+            color: #007bff;
         }
 
-        #displayName {
-            font-size: 2em;
-            color: #ff6;
+        .button-container {
             margin-top: 20px;
-            display: none;
+            padding: 10px;
+            text-align: center;
         }
 
         .link-button {
-            margin-top: 20px;
             padding: 10px 20px;
             border: none;
             border-radius: 5px;
@@ -101,40 +75,78 @@
             font-size: 1.2em;
             cursor: pointer;
             text-decoration: none;
-            display: inline-block;
             transition: all 0.3s ease;
         }
 
         .link-button:hover {
             background: #0056b3;
-            text-decoration: none;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Welcome to Stylish Site</h1>
-        <p>Enter your name below:</p>
-        <form onsubmit="handleSubmit(event)">
-            <input type="text" id="name" name="name" placeholder="Your Name" required />
-            <input type="submit" value="Submit" />
-        </form>
-        <p id="displayName"></p>
-        <!-- Button to link to the second page -->
-        <a href="index2.html" class="link-button">Go to Video Showcase</a>
+        <h1>Endless Video Showcase</h1>
+        <div id="videoGrid" class="video-grid">
+            <!-- Videos will be dynamically added here -->
+        </div>
+        <div id="loading" class="loading">Loading more videos...</div>
+        <div class="button-container">
+            <a href="index.html" class="link-button">Back to Main Page</a>
+        </div>
     </div>
 
     <script>
-        function handleSubmit(event) {
-            event.preventDefault(); // Prevent default form submission
-            const name = document.getElementById('name').value;
-            const displayElement = document.getElementById('displayName');
-            displayElement.textContent = name;
-            displayElement.style.display = 'block'; // Show the element
-            setTimeout(() => {
-                displayElement.style.display = 'none'; // Hide the element after 3 seconds
-            }, 3000); // 3000 milliseconds = 3 seconds
+        const videoGrid = document.getElementById('videoGrid');
+        const loading = document.getElementById('loading');
+        let pageToken = ''; // Initialize pageToken for pagination
+        let loadingMore = false;
+        const apiKey = 'AIzaSyDJwwwQYy-EtnU96eHVAsaxskTE-QU_2PU'; // Your API key
+
+        async function fetchVideos() {
+            if (loadingMore) return;
+            loadingMore = true;
+            loading.style.display = 'block';
+
+            try {
+                const response = await fetch(`https://www.googleapis.com/youtube/v3/videos?part=snippet,contentDetails,statistics&chart=mostPopular&regionCode=US&key=${apiKey}&pageToken=${pageToken}`);
+                const data = await response.json();
+                
+                // Check if there's a next page token
+                pageToken = data.nextPageToken || '';
+                
+                // Process the videos
+                data.items.forEach(video => {
+                    const videoId = video.id;
+                    const title = video.snippet.title;
+                    const videoHTML = `
+                        <div class="video">
+                            <iframe src="https://www.youtube.com/embed/${videoId}" allowfullscreen></iframe>
+                            <div class="video-title">${title}</div>
+                        </div>
+                    `;
+                    videoGrid.innerHTML += videoHTML;
+                });
+
+                // Hide the loading indicator
+                loading.style.display = 'none';
+            } catch (error) {
+                console.error('Error fetching videos:', error);
+                loading.style.display = 'none';
+            } finally {
+                loadingMore = false;
+            }
         }
+
+        function handleScroll() {
+            if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 100) {
+                fetchVideos();
+            }
+        }
+
+        window.addEventListener('scroll', handleScroll);
+
+        // Initial load
+        fetchVideos();
     </script>
 </body>
 </html>
