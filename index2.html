@@ -51,6 +51,30 @@
             height: 100%;
             border: none;
         }
+
+        .back-button {
+            margin-top: 20px;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            background: #007bff;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .back-button:hover {
+            background: #0056b3;
+            transform: scale(1.05);
+        }
+
+        .back-button:active {
+            background: #003d80;
+            transform: scale(0.95);
+        }
     </style>
 </head>
 <body>
@@ -58,6 +82,8 @@
     <div class="video-container" id="videoContainer">
         <!-- Videos will be dynamically inserted here -->
     </div>
+
+    <a href="index.html" class="back-button">Back to Main Page</a>
 
     <script>
         const apiKey = 'AIzaSyDJwwwQYy-EtnU96eHVAsaxskTE-QU_2PU';
