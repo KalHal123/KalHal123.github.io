@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Page with MP3 Player</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f2f2f2, #707ead);
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            padding: 0;
+        }
+
+        .container {
+            text-align: center;
+            padding: 40px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            max-width: 600px;
+            width: 100%;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            color: #007bff;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .link-button {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            color: #fff;
+            font-size: 1.2em;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.3s ease, transform 0.2s ease;
+            display: inline-block;
+            margin: 10px;
+        }
+
+        .link-button:hover {
+            background: linear-gradient(135deg, #0056b3, #003d80);
+            transform: scale(1.05);
+        }
+
+        .link-button:active {
+            background: linear-gradient(135deg, #003d80, #0056b3);
+            transform: scale(0.95);
+        }
+
+        .input-container {
+            margin-top: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        input[type="text"] {
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 1em;
+            width: 100%;
+            max-width: 350px;
+            margin-bottom: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s ease;
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #007bff;
+            box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
+        }
+
+        input[type="submit"] {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            background: #28a745;
+            color: #fff;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+
+        input[type="submit"]:hover {
+            background: #218838;
+            transform: scale(1.05);
+        }
+
+        input[type="submit"]:active {
+            background: #1e7e34;
+            transform: scale(0.95);
+        }
+
+        .download-button {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            background: #007bff;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            margin-top: 20px;
+        }
+
+        .download-button:hover {
+            background: #0056b3;
+            transform: scale(1.05);
+        }
+
+        .download-button:active {
+            background: #003d80;
+            transform: scale(0.95);
+        }
+
+        .audio-container {
+            margin-top: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .audio-controls {
+            margin-top: 10px;
+        }
+
+        .audio-button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background: #007bff;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 5px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .audio-button:hover {
+            background: #0056b3;
+            transform: scale(1.05);
+        }
+
+        .audio-button:active {
+            background: #003d80;
+            transform: scale(0.95);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to My Website</h1>
+        <div class="input-container">
+            <form id="nameForm">
+                <input type="text" id="nameInput" placeholder="Enter your name" required>
+                <input type="submit" value="Submit">
+            </form>
+            <p id="greetingMessage" style="margin-top: 20px; font-size: 1.2em;"></p>
+        </div>
+        <a href="index2.html" class="link-button">Go to Video Showcase</a>
+        <a href="index3.html" class="link-button">Go to Additional Page</a>
+        <a href="gigachad.mp3" class="download-button" download="gigachad-theme.mp3">Download Gigachad Theme</a>
+        <button class="download-button" id="downloadButton">Download Gigachad Theme (JavaScript)</button>
+        <div class="audio-container">
+            <audio id="audioPlayer" controls>
+                <source src="gigachad.mp3" type="audio/mp3">
+                Your browser does not support the audio element.
+            </audio>
+            <div class="audio-controls">
+                <button class="audio-button" onclick="setPlaybackRate(0.5)">0.5x</button>
+                <button class="audio-button" onclick="setPlaybackRate(1)">1x</button>
+                <button class="audio-button" onclick="setPlaybackRate(1.5)">1.5x</button>
+                <button class="audio-button" onclick="setPlaybackRate(2)">2x</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('nameForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const name = document.getElementById('nameInput').value;
+            const message = `Hello, ${name}! Welcome to the website.`;
+            const greetingMessage = document.getElementById('greetingMessage');
+            greetingMessage.textContent = message;
+
+            setTimeout(() => {
+                greetingMessage.textContent = '';
+            }, 3000); // Clear message after 3 seconds
+        });
+
+        document.getElementById('downloadButton').addEventListener('click', function() {
+            const url = 'gigachad.mp3'; // Path to the file
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = 'gigachad-theme.mp3'; // Default file name
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        });
+
+        function setPlaybackRate(rate) {
+            const audioPlayer = document.getElementById('audioPlayer');
+            audioPlayer.playbackRate = rate;
+        }
+    </script>
+</body>
+</html>

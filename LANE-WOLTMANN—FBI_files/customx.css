@@ -1,0 +1,91 @@
+/* This file is intentionally left blank and should be used for Through the Web CSS additions */
+
+/* Edits taken from: fbi-youtube-fix on 2024.06.04 - reapplying on 2024-08-12 due to video tile height reversions */
+
+/* Random margins being added to H3 tags */
+[class*="mosaic-plone.app.standardtiles.rawhtml-tile"] h3:first-child {
+    margin: 0 0 10px 0;
+    }
+    
+  /* Margins under query listing items */
+  .mosaic-castle.cms.querylisting-tile .focuspoint {
+    margin-bottom: 10px;
+  }
+  
+  /* Wanted Cases Link Colors */
+  .featured-content-caseoftheweek h4 a {
+    color: #337ab7;
+  }
+  
+  .mosaic-tile h1 a, .mosaic-tile h2 a, .mosaic-tile h3 a {
+    color: #337ab7;
+  }
+  
+  .section-title .title a {
+    color: #337ab7;
+  }
+  
+  /* Home Page - Icon Tiles Spacing */
+  .section-fbigov_homepage_new .mosaic-grid-row.row .icon-link-wrapper .media-left {
+      margin: 0 0 0 0;
+  }
+  
+  .section-fbigov_homepage_new .mosaic-grid-row.row .icon-link-wrapper .media-left a {
+      padding-right: 20px;
+  }
+  
+  /* Section Titles - Removed uppercase */
+  .section-title .title a {
+      text-transform: none;
+  }
+  
+  /* Subnav Menu Items - Remove capitalize */
+  .section-menu>li>a, .section-menu>li a.more-btn {
+    text-transform: none;
+  }
+  
+  /* Format - Padding Bottom */
+  
+  .mosaic-tile-padding-bottom {
+      padding-bottom: 1em;
+  }
+  
+  /* YouTube Video Fix */
+  .landscape .youtube {
+    position: relative;
+      padding-bottom: 56.25%; /* 16:9 */
+      height: 0 !important;
+    }
+    
+  .landscape .youtube iframe {
+    position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+  }
+  
+  .mosaic-width-half .video-container.landscape .video-inner-container,
+  .mosaic-width-half .video-container.landscape .pat-video {
+    height: calc(600px / 2) !important;
+  }
+  .mosaic-width-half .video-container.square .video-inner-container,
+  .mosaic-width-half .video-container.square .pat-video {
+    height: calc(1000px / 2) !important;
+  }
+  .mosaic-position-quarter .video-container.landscape .video-inner-container,
+  .mosaic-position-quarter .video-container.landscape .pat-video {
+    height: calc(600px / 3) !important;
+  }
+  .mosaic-position-quarter .video-container.square .video-inner-container,
+  .mosaic-position-quarter .video-container.square .pat-video {
+    height: calc(1000px / 3) !important;
+  }
+  .mosaic-width-third .video-container.landscape .video-inner-container,
+  .mosaic-width-third .video-container.landscape .pat-video {
+    height: calc(600px / 4) !important;
+  }
+  .mosaic-width-third .video-container.square .video-inner-container,
+  .mosaic-width-third .video-container.square .pat-video {
+    height: calc(1000px / 4) !important;
+  }
